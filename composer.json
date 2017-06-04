@@ -26,9 +26,10 @@
       }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
-        "doctrine/dbal": "^2.6@dev",
+	    "php": ">=5.6.4",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "doctrine/dbal": "dev-master",
         "laravelcollective/html": "~5.0",
         "yaap/theme": "2.*",
         "barryvdh/laravel-ide-helper": "^2.0@dev",
@@ -48,9 +49,9 @@
         "tylercd100/lern": "^3.8.1"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
+	    "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~5.7",
         "phpspec/phpspec": "~2.1",
         "jeroen-g/laravel-packager": "dev-master"
     },
@@ -85,7 +86,9 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true
