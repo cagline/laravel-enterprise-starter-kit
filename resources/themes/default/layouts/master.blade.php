@@ -21,7 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css") }}" rel="stylesheet" type="text/css" />
 
     <!-- Application CSS-->
-    <link href="{{ asset(elixir('css/all.css')) }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Head -->
     @include('partials._head')

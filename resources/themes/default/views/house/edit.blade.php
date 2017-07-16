@@ -84,9 +84,9 @@
                         <?php for ($i = 1; $i <= 8; $i++) { ?> 
                             @if(object_get($house,"image{$i}"))
                             <div  class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group image-upload-thum">
                                     {!! Form::label('image'.$i, 'Image '.$i) !!} 
-                                    <img src="{{ url('../storage/app/'. object_get($house, "image{$i}" )) }}" alt="Shop Image1" class="img-responsive img-rounded"/><p><br></p>
+                                    <img src="{{ url('../storage/app/'. object_get($house, "image{$i}" )) }}" alt="Shop Image1" class="img-responsive img-rounded"/>
                                     <div style="height: 58px;">
                                     <a class="btn btn-link" role="button" data-toggle="collapse" href="#image{{$i}}-uploader">change image {{$i}}</a>
                                     <div class="collapse" id="image{{$i}}-uploader">

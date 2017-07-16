@@ -1,3 +1,8 @@
+.image-upload-thum img{
+  margin-left: auto;
+  margin-right: auto;
+  height: 158px;
+}
 div.col-4 {
   -webkit-column-width: 15em;
   -moz-column-width: 15em;

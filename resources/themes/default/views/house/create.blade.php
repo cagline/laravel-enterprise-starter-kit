@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('map', 'Map Link', ['class'=>'required']) !!}
-                        {!! Form::number('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
+                        {!! Form::text('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                         @if ($errors->has('map'))<p class="text-danger">{!!$errors->first('map')!!}</p>@endif
                     </div>
 <!--                    <div class="form-group">

@@ -41,8 +41,8 @@
                             @if ($land->sold)<small class="label pull-right bg-green">Sold</small>
                             @else <small class="label pull-right bg-red">Unsold</small>@endif
                         </td>
-                        <td>{{ $land->created_at}}</td>
-                        <td>{{ $land->updated_at}}</td>
+                        <td class="text-nowrap">{{ date('Y/m/d, H:i', strtotime($land->created_at)) }}</td>
+                        <td class="text-nowrap">{{ date('Y/m/d, H:i', strtotime($land->updated_at)) }}</td>
                     </tr>
                     @endforeach
                 </table>

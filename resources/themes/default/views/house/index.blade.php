@@ -43,8 +43,8 @@
                             @if ($house->sold)<small class="label pull-right bg-green">Sold</small>
                             @else <small class="label pull-right bg-red">Unsold</small>@endif
                         </td>
-                        <td>{{ $house->created_at}}</td>
-                        <td>{{ $house->updated_at}}</td>
+                        <td class="text-nowrap">{{ date('Y/m/d, H:i', strtotime($house->created_at)) }}</td>
+                        <td class="text-nowrap">{{ date('Y/m/d, H:i', strtotime($house->updated_at)) }}</td>
                     </tr>
                     @endforeach
                 </table>

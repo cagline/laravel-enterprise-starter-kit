@@ -23,6 +23,7 @@ class House extends Model
      * @var array
      */
     protected $fillable = ['title', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','bed_rooms', 'bath_rooms','other_rooms', 'image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10'];
+    protected $casts = [ 'sold' => 'boolean' ];
 
     /**
      * Get the City that owns the House.

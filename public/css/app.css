@@ -80,5 +80,9 @@ i.fa-colour-yellow {
 
 .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
   font-size: 13px !important; }
-
+.image-upload-thum{
+  margin-left: auto;
+  margin-right: auto;
+  height: 100px;
+}
 /*# sourceMappingURL=app.css.map */
