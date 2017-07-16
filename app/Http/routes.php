@@ -42,7 +42,9 @@ Route::group(['middleware' => 'authorize'], function () {
     Route::get(   'dashboard',      ['as' => 'dashboard',          'uses' => 'DashboardController@index']);
     Route::get(   'user/profile',   ['as' => 'user.profile',       'uses' => 'UsersController@profile']);
     Route::patch( 'user/profile',   ['as' => 'user.profile.patch', 'uses' => 'UsersController@profileUpdate']);
-
+    Route::resource('house', 'HouseController');
+    Route::resource('land', 'LandController');
+    
     // Site administration section
     Route::group(['prefix' => 'admin'], function () {
         // User routes
@@ -163,3 +165,11 @@ Route::group(['middleware' => 'authorize'], function () {
 
 }); // end of AUTHORIZE middleware group
 
+ 
+Route::group(['middleware' => ['cors'] ,'prefix' => 'api'], function () {
+
+    Route::resource('houses', 'HousesController');
+    Route::resource('lands', 'LandsController');
+    Route::resource('districts', 'DistrictsController');
+    Route::resource('cities', 'CitiesController');
+}); // End of API group
