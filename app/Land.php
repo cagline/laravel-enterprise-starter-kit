@@ -19,7 +19,7 @@ class Land extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold', 'image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10'];
+    protected $fillable = ['title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold', 'price', 'image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10'];
     protected $casts = [ 'sold' => 'boolean' ];
     /**
      * Get the City that owns the Land.
@@ -38,7 +38,7 @@ class Land extends Model
     public function scopeApi($query)
     {
 //        return $query->where('type', 'land');
-        return $query->select('id','title', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold');
+        return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price');
     }
 
     public function isSold(){

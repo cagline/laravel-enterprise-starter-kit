@@ -18,7 +18,11 @@ class CitiesController extends Controller
      */
     public function index()
     {
-        return City::api()->get();
+        return City::api()
+                ->with('lands','houses')
+                ->whereHas('lands')   
+//                ->whereHas('lands')   
+                ->get();
     }
 
     /**

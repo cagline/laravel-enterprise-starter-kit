@@ -53,7 +53,7 @@ _ide_helper*
 *.log
 *.sql
 
-# include sqlite db resource  #
+*# include sqlite db resource  #
 ###############################
 .sqlite
 
@@ -67,3 +67,5 @@ _ide_helper*
 ehthumbs.db
 Thumbs.db
 /nbproject/private/
+
+*.zip

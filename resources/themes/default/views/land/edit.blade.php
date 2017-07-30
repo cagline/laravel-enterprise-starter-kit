@@ -43,11 +43,11 @@
                         {!! Form::text('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                         @if ($errors->has('map'))<p class="text-danger">{!!$errors->first('map')!!}</p>@endif
                     </div>
-<!--                    <div class="form-group">
-                        {!! Form::label('type', 'Type', ['class'=>'required']) !!}
-                        {!! Form::text('type', null, ['id' => 'type', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
-                        @if ($errors->has('type'))<p class="text-danger">{!!$errors->first('type')!!}</p>@endif
-                    </div>-->
+                    <div class="form-group">
+                        {!! Form::label('price', 'Price', ['class'=>'required']) !!}
+                        {!! Form::number('price', null, ['id' => 'price', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
+                        @if ($errors->has('price'))<p class="text-danger">{!!$errors->first('price')!!}</p>@endif
+                    </div>
                     <div class="form-group">
                         {!! Form::label('sold', 'Sold', ['class'=>'required']) !!}
                         {!! Form::hidden('sold', 0) !!}

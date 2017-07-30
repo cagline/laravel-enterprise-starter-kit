@@ -24,6 +24,11 @@
                         @if ($errors->has('title'))<p class="text-danger">{!!$errors->first('title')!!}</p>@endif
                     </div>
                     <div class="form-group">
+                        {!! Form::label('description', 'Description', ['class'=>'required']) !!}
+                        {!! Form::textarea('description', null, ['id' => 'description', 'class'=>'form-control', 'placeholder' => 'Description']) !!}
+                        @if ($errors->has('description'))<p class="text-danger">{!!$errors->first('title')!!}</p>@endif
+                    </div>
+                    <div class="form-group">
                         {!! Form::label('city_id', 'City', ['class'=>'required']) !!}
                         {!! Form::select('city_id', $cities, null,  ['id' => 'city_id', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                         @if ($errors->has('city_id'))<p class="text-danger">{!!$errors->first('city_id')!!}</p>@endif
@@ -62,11 +67,11 @@
                             @if ($errors->has('other_rooms'))<p class="text-danger">{!!$errors->first('other_rooms')!!}</p>@endif
                         </div>
                     </div>
-                    <!--                    <div class="form-group">
-                                            {!! Form::label('type', 'Type', ['class'=>'required']) !!}
-                                            {!! Form::text('type', null, ['id' => 'type', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
-                                            @if ($errors->has('type'))<p class="text-danger">{!!$errors->first('type')!!}</p>@endif
-                                        </div>-->
+                    <div class="form-group">
+                        {!! Form::label('price', 'Price', ['class'=>'required']) !!}
+                        {!! Form::number('price', null, ['id' => 'price', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
+                        @if ($errors->has('price'))<p class="text-danger">{!!$errors->first('type')!!}</p>@endif
+                    </div>
                     <div class="form-group">
                         {!! Form::label('map', 'Map Link', ['class'=>'required']) !!}
                         {!! Form::text('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Name']) !!}

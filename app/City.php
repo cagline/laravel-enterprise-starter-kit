@@ -20,7 +20,23 @@ class City extends Model
      * @var array
      */
     protected $fillable = ['id','district_id','name_en'];
-
+    
+    /**
+     * Get Lands that belong to city.
+     */
+    public function lands()
+    {
+        return $this->hasMany('App\Land');
+    }
+    
+        /**
+     * Get Lands that belong to city.
+     */
+    public function houses()
+    {
+        return $this->hasMany('App\Land');
+    }
+    
     /**
      * Scope a query to only include active users.
      *
