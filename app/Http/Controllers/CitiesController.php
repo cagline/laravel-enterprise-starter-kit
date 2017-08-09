@@ -21,7 +21,7 @@ class CitiesController extends Controller
         return City::api()
 //                ->with('houses')
                 ->has('houses')   
-                ->has('lands')   
+                ->orHas('lands')   
                 ->get();
     }
 

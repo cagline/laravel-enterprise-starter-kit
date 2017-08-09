@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\District;
@@ -11,6 +10,7 @@ use App\City;
 
 class DistrictsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +19,11 @@ class DistrictsController extends Controller
     public function index()
     {
 //        return District::api()->get();
-                return District::api()
+        return District::api()
 //                ->with('houses')
-                ->has('houses')
-                ->orHas('lands')   
-                ->get();
+                        ->has('houses')
+                        ->orHas('lands')
+                        ->get();
     }
 
     /**
@@ -55,7 +55,12 @@ class DistrictsController extends Controller
      */
     public function show($id)
     {
-        return District::api()->with('cities')->find($id);
+        return District::api()
+            ->with(['cities' => function($query) {
+                $query->has('houses')
+                ->orHas('lands');
+            }])
+            ->find($id);
     }
 
     /**
@@ -91,4 +96,5 @@ class DistrictsController extends Controller
     {
         //
     }
+
 }
