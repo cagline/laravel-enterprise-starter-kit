@@ -168,8 +168,10 @@ Route::group(['middleware' => 'authorize'], function () {
  
 Route::group(['middleware' => ['cors'] ,'prefix' => 'api'], function () {
 
-    Route::resource('houses', 'HousesController');
+    Route::resource('houses', 'HousesController');    
     Route::resource('lands', 'LandsController');
-    Route::resource('districts', 'DistrictsController');
+    Route::resource('districts', 'DistrictsController');    
     Route::resource('cities', 'CitiesController');
+    Route::get('cities/{id}/houses', 'HousesController@searchHouses');
+    Route::get('cities/{id}/lands', 'LandsController@searchLands');
 }); // End of API group

@@ -34,7 +34,7 @@ class City extends Model
      */
     public function houses()
     {
-        return $this->hasMany('App\Land');
+        return $this->hasMany('App\House');
     }
     
     /**

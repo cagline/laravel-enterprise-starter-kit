@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 class House extends Model
 {
     const DEFAULT_IMAGE = 'default-image.png';
+    const API_TYPE_CLIENT = 'client';    
+    const API_TYPE_ROW = 'row';
 
     /**
      * The database table used by the model.
@@ -42,7 +44,7 @@ class House extends Model
     public function scopeApi($query)
     {
 //        return $query->where('type', 'house');
-        return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price','image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10');
+        return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price','image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10')->where('sold',0);
     }
     
     public function isSold(){

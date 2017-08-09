@@ -29,6 +29,22 @@ class District extends Model
     }
     
     /**
+     * Get the houses for the districts.
+     */
+    public function houses()
+    {
+        return $this->hasManyThrough('App\House', 'App\City');
+    }
+    
+        /**
+     * Get the houses for the districts.
+     */
+    public function lands()
+    {
+        return $this->hasManyThrough('App\Land', 'App\City');
+    }
+    
+    /**
      * Scope a query to only include active users.
      *
      * @return \Illuminate\Database\Eloquent\Builder

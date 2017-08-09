@@ -22,4 +22,8 @@ return [
             'table'      => 'settings',
         ],
     ],
+    'apiType' => [
+        'row'     => 'row',
+        'client' => 'client',
+    ],
 ];

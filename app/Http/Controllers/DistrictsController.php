@@ -18,7 +18,12 @@ class DistrictsController extends Controller
      */
     public function index()
     {
-        return District::api()->get();
+//        return District::api()->get();
+                return District::api()
+//                ->with('houses')
+                ->has('houses')
+                ->orHas('lands')   
+                ->get();
     }
 
     /**

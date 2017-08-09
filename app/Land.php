@@ -38,7 +38,7 @@ class Land extends Model
     public function scopeApi($query)
     {
 //        return $query->where('type', 'land');
-        return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price');
+        return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price')->where('sold',0);
     }
 
     public function isSold(){

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace App\Http\Controllers;
 
@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\House;
 use App\City;
+use Illuminate\Support\Facades\Config;
 
 class HousesController extends Controller
 {
@@ -16,9 +17,16 @@ class HousesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return House::api()->get();
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $houses = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $houses = House::paginate();
+        }else{
+            $houses = House::api()->paginate();
+        }
+        return $houses;
     }
 
     /**
@@ -48,9 +56,16 @@ class HousesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        return House::api()->find($id);
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $house = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $house = House::find($id);
+        }else{
+            $house= House::api()->find($id);
+        }
+        return $house;
     }
 
     /**
@@ -86,5 +101,33 @@ class HousesController extends Controller
     {
         //
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchHouses(Request $request, $cityId)
+    {
+        $minPrice = $request->get('minPrice', 0);
+        $maxPrice = $request->get('maxPrice');
 
+        $apiType = $request->header('api-type', House::API_TYPE_CLIENT);
+        $houses = null;
+        
+        if($apiType == House::API_TYPE_ROW){
+            $housesQuery = House::where('city_id', $cityId);
+        }else{
+            $housesQuery = House::api()->where('city_id', $cityId);
+        }
+        
+        if($maxPrice){
+            $housesQuery->whereBetween('price', [$minPrice, $maxPrice]);
+        }else{
+            $housesQuery->where('price', '>=' ,$minPrice );
+        }
+        $houses = $housesQuery->paginate();
+        return $houses;
+    }
+    
 }
