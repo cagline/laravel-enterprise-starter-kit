@@ -19,14 +19,14 @@ class LandsController extends Controller
     public function index()
     {
         return Land::api()->paginate();
-        $apiType = $request->header('api-type', House::API_TYPE_CLIENT);
-        $houses = null;
-        if($apiType == House::API_TYPE_ROW){
-            $houses = House::paginate();
+        $apiType = $request->header('api-type', Land::API_TYPE_CLIENT);
+        $lands = null;
+        if($apiType == Land::API_TYPE_ROW){
+            $lands = Land::paginate();
         }else{
-            $houses = House::api()->paginate();
+            $lands = Land::api()->paginate();
         }
-        return $houses;
+        return $lands;
     }
 
     /**
@@ -60,13 +60,13 @@ class LandsController extends Controller
     {
         return Land::api()->find($id);
         $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
-        $house = null;
+        $land = null;
         if($apiType == Config::get('settings.apiType.row')){
-            $house = Land::find($id);
+            $land = Land::find($id);
         }else{
-            $house= Land::api()->find($id);
+            $land= Land::api()->find($id);
         }
-        return $house;
+        return $land;
     }
 
     /**
@@ -101,6 +101,34 @@ class LandsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchLands(Request $request, $cityId)
+    {
+        $minPrice = $request->get('minPrice', 0);
+        $maxPrice = $request->get('maxPrice');
+
+        $apiType = $request->header('api-type', Land::API_TYPE_CLIENT);
+        $lands = null;
+        
+        if($apiType == Land::API_TYPE_ROW){
+            $landsQuery = Land::where('city_id', $cityId);
+        }else{
+            $landsQuery = Land::api()->where('city_id', $cityId);
+        }
+        
+        if($maxPrice){
+            $landsQuery->whereBetween('price', [$minPrice, $maxPrice]);
+        }else{
+            $landsQuery->where('price', '>=' ,$minPrice );
+        }
+        $lands = $landsQuery->paginate();
+        return $lands;
     }
 
 }

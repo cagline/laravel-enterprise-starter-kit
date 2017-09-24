@@ -20,7 +20,8 @@ class HouseController extends Controller
      */
     public function index()
     {
-        $houses = House::all();
+              
+        $houses = House::paginate();
         return view('house.index', compact('houses'));
     }
 
@@ -114,7 +115,15 @@ class HouseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $house = House::find($id);
+        if ($house->delete()) {
+            \Session::flash('alert-class', 'success');
+            \Session::flash('message', 'Successfully  deleted');
+        } else {
+            \Session::flash('alert-class', 'error');
+            \Session::flash('message', 'Something wrong with deletion !');
+        }
+        return redirect('house');
     }
 
     public function uploadImages($input, $house)

@@ -45,7 +45,8 @@
                         <td class="text-nowrap">{{ date('Y/m/d, H:i', strtotime($land->updated_at)) }}</td>
                     </tr>
                     @endforeach
-                </table>
+                </table> 
+				<div class="col-xs-12">{!! $lands->render() !!}</div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

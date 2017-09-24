@@ -48,6 +48,7 @@
                     </tr>
                     @endforeach
                 </table>
+					<div class="col-xs-12">{!! $houses->render() !!}</div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

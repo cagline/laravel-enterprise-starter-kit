@@ -20,7 +20,7 @@ class LandController extends Controller
      */
     public function index()
     {
-        $lands = Land::all();
+        $lands = Land::paginate();
         return view('land.index', compact('lands'));
     }
 
@@ -47,7 +47,6 @@ class LandController extends Controller
         $land = Land::create($input);
 
         $inputWithImage = $this->uploadImages($input, $land);
-dd($inputWithImage);
         if ($land->update($inputWithImage)) {
             \Session::flash('alert-class', 'success');
             \Session::flash('message', 'Successfully  Created');
@@ -114,7 +113,15 @@ dd($inputWithImage);
      */
     public function destroy($id)
     {
-        //
+        $land = Land::find($id);
+        if ($land->delete()) {
+            \Session::flash('alert-class', 'success');
+            \Session::flash('message', 'Successfully  deleted');
+        } else {
+            \Session::flash('alert-class', 'error');
+            \Session::flash('message', 'Something wrong with deletion !');
+        }
+        return redirect('land');
     }
 
     public function uploadImages($input, $land)
