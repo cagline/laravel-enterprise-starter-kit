@@ -32,7 +32,10 @@ class LandController extends Controller
     public function create()
     {
         $cities = City::lists('name_en', 'id');
-        return view('land.create', compact('cities'));
+        $typeLand = Land::TYPE_DEFAULT;        
+        $typeServey = Land::TYPE_LAND_SERVEY;
+        $typeOnGoing = Land::TYPE_ONGOING_LAND_SERVEY;
+        return view('land.create', compact('cities','typeLand','typeServey','typeOnGoing'));
     }
 
     /**
@@ -78,7 +81,10 @@ class LandController extends Controller
     {
         $land = Land::find($id);
         $cities = City::lists('name_en', 'id');
-        return view('land.edit', compact('land', 'cities'));
+        $typeLand = Land::TYPE_DEFAULT;        
+        $typeServey = Land::TYPE_LAND_SERVEY;
+        $typeOnGoing = Land::TYPE_ONGOING_LAND_SERVEY;
+        return view('land.edit', compact('land', 'cities','typeLand','typeServey','typeOnGoing'));
     }
 
     /**

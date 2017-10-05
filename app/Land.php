@@ -11,7 +11,9 @@ class Land extends Model
     const DEFAULT_IMAGE = 'default-image.png';
     const API_TYPE_CLIENT = 'client';    
     const API_TYPE_ROW = 'row';
-    const DEFULT_TYPE = 'land';
+    const TYPE_DEFAULT = 'land';
+    const TYPE_LAND_SERVEY = 'land_servey';
+    const TYPE_ONGOING_LAND_SERVEY = 'ongoing_servey';
 
     /**
      * The database table used by the model.
@@ -34,10 +36,10 @@ class Land extends Model
     * 
     * @return string
     */
-    public function getTypeAttribute()
-    {
-        return self::DEFULT_TYPE;
-    } 
+//    public function getTypeAttribute()
+//    {
+//        return self::TYPE_DEFAULT;
+//    } 
 
     /**
      * Get the City that owns the Land.
@@ -57,6 +59,21 @@ class Land extends Model
     {
 //        return $query->where('type', 'land');
         return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','price', 'image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10')->where('sold',0);
+    }
+    
+    public function scopeDefaultType($query)
+    {
+        return $query->where('type', self::TYPE_DEFAULT);
+    }
+    
+    public function scopeLandServey($query)
+    {
+        return $query->where('type', self::TYPE_LAND_SERVEY);
+    }
+    
+    public function scopeOnGoingLandServey($query)
+    {
+        return $query->where('type', self::TYPE_ONGOING_LAND_SERVEY);
     }
 
     public function isSold(){

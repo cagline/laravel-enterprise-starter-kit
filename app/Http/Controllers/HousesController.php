@@ -22,9 +22,9 @@ class HousesController extends Controller
         $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
         $houses = null;
         if($apiType == Config::get('settings.apiType.row')){
-            $houses = House::paginate();
+            $houses = House::defaultType()->paginate();
         }else{
-            $houses = House::api()->paginate();
+            $houses = House::api()->defaultType()->paginate();
         }
         return $houses;
     }
@@ -116,9 +116,9 @@ class HousesController extends Controller
         $houses = null;
         
         if($apiType == House::API_TYPE_ROW){
-            $housesQuery = House::where('city_id', $cityId);
+            $housesQuery = House::defaultType()->where('city_id', $cityId);
         }else{
-            $housesQuery = House::api()->where('city_id', $cityId);
+            $housesQuery = House::api()->defaultType()->where('city_id', $cityId);
         }
         
         if($maxPrice){
@@ -130,4 +130,37 @@ class HousesController extends Controller
         return $houses;
     }
     
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getConstructions(Request $request)
+    {
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $houses = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $houses = House::construction()->paginate();
+        }else{
+            $houses = House::api()->construction()->paginate();
+        }
+        return $houses;
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOnGoingConstructions(Request $request)
+    {
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $houses = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $houses = House::construction()->paginate();
+        }else{
+            $houses = House::api()->onGoingConstruction()->paginate();
+        }
+        return $houses;
+    }
 }

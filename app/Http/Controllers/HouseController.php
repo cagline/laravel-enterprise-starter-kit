@@ -32,8 +32,12 @@ class HouseController extends Controller
      */
     public function create()
     {
-        $cities = City::lists('name_en', 'id');
-        return view('house.create', compact('cities'));
+        $cities = City::lists('name_en', 'id');        
+        $typeHouse = House::TYPE_DEFAULT;        
+        $typeConstruction = House::TYPE_CONSTRUCTION;
+        $typeOnGoing = House::TYPE_ON_GOING_CONSTRUCTION;
+
+        return view('house.create', compact('cities','typeHouse','typeConstruction','typeOnGoing'));
     }
 
     /**
@@ -80,7 +84,11 @@ class HouseController extends Controller
     {
         $house = House::find($id);
         $cities = City::lists('name_en', 'id');
-        return view('house.edit', compact('house', 'cities'));
+        $typeHouse = House::TYPE_DEFAULT;        
+        $typeConstruction = House::TYPE_CONSTRUCTION;
+        $typeOnGoing = House::TYPE_ON_GOING_CONSTRUCTION;
+
+        return view('house.edit', compact('house', 'cities','typeHouse','typeConstruction','typeOnGoing'));
     }
 
     /**

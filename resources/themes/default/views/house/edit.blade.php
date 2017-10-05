@@ -39,17 +39,13 @@
                         @if ($errors->has('address'))<p class="text-danger">{!!$errors->first('address')!!}</p>@endif
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-4">
-                            {!! Form::label('price', 'Price', ['class'=>'required']) !!}
-                            {!! Form::number('price', null, ['id' => 'price', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
-                            @if ($errors->has('price'))<p class="text-danger">{!!$errors->first('type')!!}</p>@endif
-                        </div>
+                        
                         <div class="form-group col-md-6">
                             {!! Form::label('house_size', 'House Size', ['class'=>'required']) !!}
                             {!! Form::number('house_size', null, ['id' => 'house_size', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                             @if ($errors->has('house_size'))<p class="text-danger">{!!$errors->first('house_size')!!}</p>@endif
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             {!! Form::label('land_size', 'Land Size', ['class'=>'required']) !!}
                             {!! Form::number('land_size', null, ['id' => 'land_size', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                             @if ($errors->has('land_size'))<p class="text-danger">{!!$errors->first('land_size')!!}</p>@endif
@@ -72,12 +68,38 @@
                             @if ($errors->has('other_rooms'))<p class="text-danger">{!!$errors->first('other_rooms')!!}</p>@endif
                         </div>
                     </div>
-                    
                     <div class="form-group">
+                            {!! Form::label('price', 'Price', ['class'=>'required']) !!}
+                            {!! Form::number('price', null, ['id' => 'price', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
+                            @if ($errors->has('price'))<p class="text-danger">{!!$errors->first('type')!!}</p>@endif
+                    </div>
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeHouse , $house->type == $typeHouse)  !!}
+                            House
+                            </label>
+                            
+                        </div>                        
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeConstruction , $house->type ==$typeConstruction)  !!}
+                            Construction
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeOnGoing , $house->type ==$typeOnGoing)  !!}
+                            On Going Construction
+                            </label>
+                        </div>
+                       
+                    </div>
+<!--                    <div class="form-group">
                         {!! Form::label('map', 'Map Link', ['class'=>'required']) !!}
                         {!! Form::text('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Name']) !!}
                         @if ($errors->has('map'))<p class="text-danger">{!!$errors->first('map')!!}</p>@endif
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         {!! Form::label('sold', 'Sold', ['class'=>'required']) !!}
                         {!! Form::hidden('sold', 0) !!}

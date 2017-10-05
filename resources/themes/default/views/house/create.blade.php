@@ -65,11 +65,32 @@
                             @if ($errors->has('other_rooms'))<p class="text-danger">{!!$errors->first('other_rooms')!!}</p>@endif
                         </div>
                     </div>
+                    
                     <div class="form-group">
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeHouse , true)  !!}
+                            House
+                            </label>
+                        </div>                        
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeConstruction , false)  !!}
+                            Construction
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            {!! Form::radio('type', $typeOnGoing , false)  !!}
+                            On Going Construction
+                            </label>
+                        </div>
+                    </div>
+<!--                    <div class="form-group">
                         {!! Form::label('map', 'Map Link', ['class'=>'required']) !!}
                         {!! Form::text('map', null, ['id' => 'map', 'class'=>'form-control', 'placeholder' => 'Map Link']) !!}
                         @if ($errors->has('map'))<p class="text-danger">{!!$errors->first('map')!!}</p>@endif
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         {!! Form::label('price', 'Price', ['class'=>'required']) !!}
                         {!! Form::number('price', null, ['id' => 'price', 'class'=>'form-control', 'placeholder' => 'Price']) !!}

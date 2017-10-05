@@ -13,7 +13,10 @@ class House extends Model
     const DEFAULT_IMAGE = 'default-image.png';
     const API_TYPE_CLIENT = 'client';    
     const API_TYPE_ROW = 'row';
-    const DEFULT_TYPE = 'house';
+    const TYPE_DEFAULT = 'house';    
+    const TYPE_CONSTRUCTION = 'construction';    
+    const TYPE_ON_GOING_CONSTRUCTION = 'ongoing';
+
 
     /**
      * The database table used by the model.
@@ -36,10 +39,10 @@ class House extends Model
     * 
     * @return string
     */
-    public function getTypeAttribute()
-    {
-        return self::DEFULT_TYPE;
-    } 
+//    public function getTypeAttribute()
+//    {
+//        return self::TYPE_DEFAULT;
+//    } 
 
     /**
      * Get the City that owns the House.
@@ -59,6 +62,21 @@ class House extends Model
     {
 //        return $query->where('type', 'house');
         return $query->select('id','title','description', 'city_id', 'address', 'house_size', 'land_size', 'map', 'type', 'sold','bed_rooms', 'bath_rooms','other_rooms','price','image1', 'image2', 'image3', 'image4','image5','image6','image7','image8','image9','image10')->where('sold',0);
+    }
+    
+    public function scopeDefaultType($query)
+    {
+        return $query->where('type', self::TYPE_DEFAULT);
+    }
+    
+    public function scopeConstruction($query)
+    {
+        return $query->where('type', self::TYPE_CONSTRUCTION);
+    }
+    
+    public function scopeOnGoingConstruction($query)
+    {
+        return $query->where('type', self::TYPE_ON_GOING_CONSTRUCTION);
     }
     
     public function isSold(){

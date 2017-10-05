@@ -174,4 +174,10 @@ Route::group(['middleware' => ['cors'] ,'prefix' => 'api'], function () {
     Route::resource('cities', 'CitiesController');
     Route::get('cities/{id}/houses', 'HousesController@searchHouses');
     Route::get('cities/{id}/lands', 'LandsController@searchLands');
+    
+    Route::get('houses/type/constructions', 'HousesController@getConstructions');
+    Route::get('houses/type/ongoing-constructions', 'HousesController@getOnGoingConstructions');
+    
+    Route::get('lands/type/land-serveys', 'LandsController@getLandServeys');
+    Route::get('lands/type/ongoing-land-serveys', 'LandsController@getOnGoingLandServeys');
 }); // End of API group

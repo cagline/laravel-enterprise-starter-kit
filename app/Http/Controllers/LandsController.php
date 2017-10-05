@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Land;
 use App\City;
+use Illuminate\Support\Facades\Config;
 
 class LandsController extends Controller
 {
@@ -18,13 +19,12 @@ class LandsController extends Controller
      */
     public function index()
     {
-        return Land::api()->paginate();
         $apiType = $request->header('api-type', Land::API_TYPE_CLIENT);
         $lands = null;
         if($apiType == Land::API_TYPE_ROW){
-            $lands = Land::paginate();
+            $lands = Land::defaultType()->paginate();
         }else{
-            $lands = Land::api()->paginate();
+            $lands = Land::api()->defaultType()->paginate();
         }
         return $lands;
     }
@@ -58,7 +58,6 @@ class LandsController extends Controller
      */
     public function show($id)
     {
-        return Land::api()->find($id);
         $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
         $land = null;
         if($apiType == Config::get('settings.apiType.row')){
@@ -117,9 +116,9 @@ class LandsController extends Controller
         $lands = null;
         
         if($apiType == Land::API_TYPE_ROW){
-            $landsQuery = Land::where('city_id', $cityId);
+            $landsQuery = Land::defaultType()->where('city_id', $cityId);
         }else{
-            $landsQuery = Land::api()->where('city_id', $cityId);
+            $landsQuery = Land::api()->defaultType()->where('city_id', $cityId);
         }
         
         if($maxPrice){
@@ -131,4 +130,37 @@ class LandsController extends Controller
         return $lands;
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLandServeys(Request $request)
+    {
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $lands = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $lands = Land::landServey()->paginate();
+        }else{
+            $lands = Land::api()->landServey()->paginate();
+        }
+        return $lands;
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOnGoingLandServeys(Request $request)
+    {
+        $apiType = $request->header('api-type', Config::get('settings.apiType.client'));
+        $lands = null;
+        if($apiType == Config::get('settings.apiType.row')){
+            $lands = Land::landServey()->paginate();
+        }else{
+            $lands = Land::api()->onGoingLandServey()->paginate();
+        }
+        return $lands;
+    }
 }
